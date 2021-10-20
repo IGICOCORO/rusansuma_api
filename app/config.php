@@ -14,9 +14,13 @@ function executeQuery($sql = "") {
 }
 // NOMBRE TOTAL DE MENAGE PAR COMMUNE
 function total_number_of_menage_by_communes() {
-	$sql = "SELECT SUM(F) as menages,B as communes from feuil1 GROUP BY communes";
+	$sql = "SELECT SUM(ID08) as menages,ID02 as communes from feuil GROUP BY communes";
 }
 
+// TYPE D'HABITATION PAR COMMUNE
+function type_habitation_par_commune() {
+	$sql = "SELECT SUM(ID08) as menages,ID02 as communes from feuil GROUP BY communes";
+}
 /*## DEBUG
 
 function debug($v = null) {

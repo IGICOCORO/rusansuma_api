@@ -1,26 +1,23 @@
-<?php 
+<?php
 
 // ID02
-$communes_liste  = [
-                  0   => "NON INCONNUE",     
-                  101 => "Bubanza",
-                  102 => "Gihanga",
-                  103 => "Mpanda",
-                  104 => "Musigati",
-                  105 => "Rugazi",
-               ];
+$communes_liste = [
+	0 => "INCONNUE",
+	1 => "Bubanza",
+	2 => "Gihanga",
+	3 => "Mpanda",
+	4 => "Musigati",
+	5 => "Rugazi",
+];
 
 // QS 03
-//$type_structure = [
-  //      1 => "Case/paillote/hutte",
-  //      2 => "Maison isolée",
-//    3 => "Villa moderne",
- //       4 => "Maison à plusieurs logements/appartements",
-   //     5 => "Immeuble à plusieurs appartements",
-     //   6 => "Concessions : Urupangu/Urugo",
-//];
+$milieu_habitation = [
+	1 => "Urbain",
+	2 => "Rural",
+];
 
-define('COMMUNES' , $communes_liste );
-//define('TYPE_STRUCTURE' , $type_structure );
+define('COMMUNES', $communes_liste);
+define('TYPE_HABITATION', $milieu_habitation);
+//var_dump(TYPE_HABITATION[1] == "Rural");
 
 // var_dump(COMMUNES[1801] == "Muha");

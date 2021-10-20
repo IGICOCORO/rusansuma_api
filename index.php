@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_URI'] == DOCUMENT_ROOT) {
 	echo json_encode(
 		[
 			'menage_commune' => "MENAGE PAR COMMUNES",
+			'type_habitation' => "TYPE D'HABITATION",
 			//	'/communes' => "NOMBRE D'HABITATANT PAR COMMUNES",
 			//	'/menages' => "NOMBRE TOTAL DES MENAGES",
 			//	'/provinces' => "NOMBRE D'HABITATANT PAR PROVINCES",
@@ -21,13 +22,18 @@ if ($_SERVER['REQUEST_URI'] == DOCUMENT_ROOT) {
 			//	'/hommes' => "NOMBRE DES HOMMES",
 			//	'/usage_appareil' => "USAGE DES APPAREILS",
 			//	'/statut_occupation/{province_id}' => "STATUT D'OCCUPPATION DES PROVINCES ",
-			//	'/type_structure/{province_id ?}' => "TYPE DE STRUCTURE",
+
 		], JSON_PRETTY_PRINT
 
 	);
 }
 
-if (strpos($_SERVER['REQUEST_URI'], 'menages par communes')) {
+if (strpos($_SERVER['REQUEST_URI'], 'menage_commune')) {
 	$data = total_number_of_menage_by_communes();
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+
+if (strpos($_SERVER['REQUEST_URI'], 'type_habitation')) {
+	$data = type_habitation_par_commune();
 	echo json_encode($data, JSON_PRETTY_PRINT);
 }
