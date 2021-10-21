@@ -9,7 +9,8 @@ if ($_SERVER['REQUEST_URI'] == DOCUMENT_ROOT) {
 	echo json_encode(
 		[
 			'menage_commune' => "MENAGE PAR COMMUNES",
-			'type_habitation' => "TYPE D'HABITATION"
+			'type_habitation' => "TYPE D'HABITATION",
+			"type_toiture" => 'TYPE DE TOITURE '
 		], JSON_PRETTY_PRINT);
 }
 
@@ -20,5 +21,9 @@ if (strpos($_SERVER['REQUEST_URI'], 'menage_commune')) {
 
 if (strpos($_SERVER['REQUEST_URI'], 'type_habitation')) {
 	$data = type_habitation_par_commune();
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'type_toiture')) {
+	$data = type_toiture();
 	echo json_encode($data, JSON_PRETTY_PRINT);
 }

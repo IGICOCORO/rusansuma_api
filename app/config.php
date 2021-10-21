@@ -1,6 +1,7 @@
 <?php
 require "app/db.php";
 require "app/data.php";
+
 // NOMBRE DE MENAGE PAR COMMUNE
 
 function executeQuery($sql = "") {
@@ -15,14 +16,14 @@ function executeQuery($sql = "") {
 // NOMBRE TOTAL DE MENAGE PAR COMMUNE
 
 function total_number_of_menage_by_communes(){
-		$sql = "SELECT SUM(ID08) as menages,ID02 as communes from feuil GROUP BY communes";
-		$result = executeQuery($sql);
-		$data = [];
-		foreach($result as $r)
-		{
-			$r['communeName'] = COMMUNES[$r['communes']];
-			$data[] = $r;
-		}
+	$sql = "SELECT SUM(ID08) as menages,ID02 as communes from feuil GROUP BY communes";
+	$result = executeQuery($sql);
+	$data = [];
+	foreach($result as $r)
+	{
+		$r['communeName'] = COMMUNES[$r['communes']];
+		$data[] = $r;
+	}
 	return $data;
 
 }
@@ -31,4 +32,17 @@ function total_number_of_menage_by_communes(){
 // TYPE D'HABITATION PAR COMMUNE
 function type_habitation_par_commune() {
 	$sql = "SELECT SUM(ID08) as menages,ID02 as communes from feuil GROUP BY communes";
+}
+
+function type_toiture(){
+	$sql = 'SELECT count(*) as totalType ,H03 as type_toiture,  ID02 as communes from feuil GROUP BY H03,  ID02';
+	$result = executeQuery($sql);
+	$data = [];
+	foreach($result as $r)
+	{
+		$r['type_toiture_name'] = TYPETOITURE[$r['type_toiture']];
+		$data[] = $r;
+	}
+
+	return $data;
 }
