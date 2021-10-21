@@ -68,3 +68,6 @@ P27CM		63		Etat matrimonial du CM
 TAILL		64		Taille du ménage
 ----------------------------------------------------------------------------------
 Variables du fichier de travail		
+
+
+

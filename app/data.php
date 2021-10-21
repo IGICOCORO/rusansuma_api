@@ -26,10 +26,23 @@ $typeToiture = [
 	7 => 'Autres ',
 ];
 
+ $type_de_materiaux = [
+ 	1 => 'Bois/pisé non cimenté',
+	2 => 'Bois/pisé/cimenté',
+	3 => 'Briques adobes',
+	4 => 'Briques cuites',
+	5 => 'Blocs ciment / Béton',
+	6 => 'Pierres',
+	7 => 'Planches ',
+	8 => 'Plastique / sheeting/Cartons ',
+	9 => 'Autres ',
+ ];
+
 
 define('COMMUNES', $communes_liste );
 define('TYPE_HABITATION', $milieu_habitation);
 define('TYPETOITURE', $typeToiture);
+define('TYPE_DE_MATERIAUX', $type_de_materiaux);
 
 //var_dump(COMMUNES[1] == "Bubanza");
 

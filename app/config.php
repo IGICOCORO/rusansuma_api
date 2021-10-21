@@ -35,12 +35,13 @@ function type_habitation_par_commune() {
 }
 
 function type_toiture(){
-	$sql = 'SELECT count(*) as totalType ,H03 as type_toiture,  ID02 as communes from feuil GROUP BY H03,  ID02';
+	$sql = 'SELECT count(*) as totalType ,H03 as type_toiture,  ID02 as commune from feuil GROUP BY H03,  ID02';
 	$result = executeQuery($sql);
 	$data = [];
 	foreach($result as $r)
 	{
 		$r['type_toiture_name'] = TYPETOITURE[$r['type_toiture']];
+		$r['communeName'] = COMMUNES[$r['commune']];
 		$data[] = $r;
 	}
 
