@@ -1,6 +1,6 @@
 <?php
 
-function connectTo($databasename = "isteebu_gitega") {
+function getConnection($databasename = "isteebu_gitega") {
 
 	$servername = "localhost";
 	$username = "jean";
@@ -12,17 +12,10 @@ function connectTo($databasename = "isteebu_gitega") {
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		//echo "Connected successfully";
 	} catch (PDOException $e) {
+		die($e);
 		echo "Connection failed: " . $e->getMessage();
 	}
 	return $conn;
 
 }
 
-function getConnection() {
-	return connectTo();
-}
-
-function getConnection_on_orginal() {
-	return connectTo();
-}
-?>
