@@ -28,8 +28,18 @@ function total_number_of_menage_by_communes(){
 		return $data;
 
 }
-
-
+// TOUS LES COMMUNES
+function tous_les_communes() {
+	$sql = "SELECT ID02 as commune from feuil GROUP BY commune ORDER BY commune ASC ";
+	$result = executeQuery($sql);
+	$data = [];
+	foreach($result as $r)
+	{
+		$r['commune_name'] = COMMUNES[$r['commune'] ?? 0];
+		$data[] = $r;
+	}
+	return $data;
+}
 
 
 

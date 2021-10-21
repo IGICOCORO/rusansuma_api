@@ -22,7 +22,4 @@ function getConnection() {
 	return connectTo();
 }
 
-function getConnection_on_orginal() {
-	return connectTo('hhmng');
-}
 ?>
