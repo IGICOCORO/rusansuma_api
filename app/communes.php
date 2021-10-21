@@ -1,13 +1,14 @@
 <?php
 
-// ID02
+// ID02 BUBANZA 
 $communes_liste = [
-	0 => "INCONNUE",
-	1 => "Bubanza",
-	2 => "Gihanga",
-	3 => "Mpanda",
-	4 => "Musigati",
-	5 => "Rugazi",
+		        1 =>  [ 
+		                1 => "Bubanza",
+		                2 => "Gihanga",
+		                3 => "Mpanda",
+		                4 => "Musigati",
+		                5 => "Rugazi",
+		        ],
 ];
 
 // QS 03
@@ -16,8 +17,7 @@ $milieu_habitation = [
 	2 => "Rural",
 ];
 
-define('COMMUNES', $communes_liste);
+define('COMMUNES', $communes_liste );
 define('TYPE_HABITATION', $milieu_habitation);
-//var_dump(TYPE_HABITATION[1] == "Rural");
 
-// var_dump(COMMUNES[1801] == "Muha");
+//var_dump(COMMUNES[1] == "Bubanza");
