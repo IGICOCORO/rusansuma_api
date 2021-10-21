@@ -1,14 +1,13 @@
 <?php
 
-// ID02 BUBANZA 
+// ID02
 $communes_liste = [
-		        1 =>  [ 
-		                1 => "Bubanza",
-		                2 => "Gihanga",
-		                3 => "Mpanda",
-		                4 => "Musigati",
-		                5 => "Rugazi",
-		        ],
+		0 => "INCONNUE",
+		1 => "Bubanza",
+		2 => "Gihanga",
+		3 => "Mpanda",
+		4 => "Musigati",
+		5 => "Rugazi",
 ];
 
 // QS 03

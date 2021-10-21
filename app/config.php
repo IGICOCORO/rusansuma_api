@@ -17,17 +17,15 @@ function executeQuery($sql = "") {
 function total_number_of_menage_by_communes(){
 		$sql = "SELECT SUM(ID08) as menages,ID02 as communes from feuil GROUP BY communes";
 		$result = executeQuery($sql);
-		
-	$result = executeQuery($sql);
 
-	$data = [];
-	foreach($result as $r)
-	{
-		$r["commune_name"] = COMMUNES[$r['commune'] ?? 0];
+		$data = [];
+		foreach($result as $r)
+		{
+			$r["commune_name"] = COMMUNES[$r['communes']];
 
-		$data[] = $r;
-	}
-	return $data;
+			$data[] = $r;
+		}
+		return $data;
 
 }
 
