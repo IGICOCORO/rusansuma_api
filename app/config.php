@@ -43,10 +43,54 @@ function tous_les_communes() {
 
 
 
-// TYPE D'HABITATION PAR COMMUNE
-function type_habitation_par_commune() {
-	$sql = "SELECT SUM(ID08) as menages,ID02 as communes from feuil GROUP BY communes";
+// SOMME MENAGES RECENSEES
+function somme_menage_recenses() {
+	$sql = "SELECT COUNT(ID08) AS somme_menages_recensés FROM hlsample";
+
+	$data = executeQuery($sql);
+
+	
+	return $data;
 }
+
+// Somme de la population des menages ordinaires recenses
+function somme_population_menages_ordinaires_recenses() {
+	$sql = "SELECT count(`P03`) as Total_residents  from hlsample WHERE P03 IN (1,2)";
+
+	$data = executeQuery($sql);
+
+	
+	return $data;
+}
+
+// TAILLE MOYENNE DES MENAGES 
+function taille_moyenne_menages() {
+	$sql = "SELECT  COUNT(`P03`) / COUNT(`ID08`) as Taille_moyenne_menages  from hlsample";
+
+	$data = executeQuery($sql);	
+	return $data;
+}
+
+// MENAGES AVEC ZEROS DECES
+function menages_avec_zeros_deces() {
+	$sql = "SELECT COUNT(`ID08`) as Menages_avec_zeros_deces from feuil WHERE HDEATH = 0";
+
+	$data = executeQuery($sql);	
+	return $data;
+}
+//NOMBRE DE PERSONNE AVEC SITUATION DE RESIDENCE NON DECLAREE
+function personne_avec_residence_non_declaree() {
+	$sql = "SELECT COUNT(P03) as nombre_personne_avec_resi_non_declare FROM `hlsample` WHERE P03 IS NULL OR P03";
+
+	$data = executeQuery($sql);	
+	return $data;
+}
+
+
+
+
+
+
 /*## DEBUG
 
 function debug($v = null) {
@@ -68,7 +112,7 @@ echo "</pre>";
  *  - https://fetch.spec.whatwg.org/#http-cors-protocol
  *
  */
-function cors() {
+/*function cors() {
 
 	// Allow from any origin
 	if (isset($_SERVER['HTTP_ORIGIN'])) {
@@ -96,4 +140,4 @@ function cors() {
 	}
 
 	//echo "You have CORS!";
-}
+}*/

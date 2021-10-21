@@ -13,10 +13,11 @@ if ($_SERVER['REQUEST_URI'] == DOCUMENT_ROOT) {
 		[
 			'menage_commune' => "MENAGE PAR COMMUNES",
 			'communes' => "TOUS LES COMMUNES",
-			//	'/communes' => "NOMBRE D'HABITATANT PAR COMMUNES",
-			//	'/menages' => "NOMBRE TOTAL DES MENAGES",
-			//	'/provinces' => "NOMBRE D'HABITATANT PAR PROVINCES",
-			//	'/menage_province' => "NOMBRE DE MENAGE PAR PROVINCES",
+			'Somme_population_menages_ordinaires_recenses' => "MATERIAUX DE TOITURE",
+			'somme_des_menages_recenses' => "SOMMES DES MENAGES RECENSES",
+			'taille_moyenne_menages' => "TAILLE MOYENNES DES MENAGES",
+			'menages_avec_zeros_deces' => "NOMBRE DE MENAGES AVEC ZEROS DECES",
+			'personne_avec_residence_non_declaree' => "NOMBRE DE PERSONNES AVEC SITUATION DE RESIDENCE NON DECLAREE",
 			//	'/nombre_communes' => "NOMBRE DE POPULATION PAR COMMUNES",
 			//	'/femmes' => "NOMBRE DES FEMMES",
 			//	'/hommes' => "NOMBRE DES HOMMES",
@@ -38,7 +39,28 @@ if (strpos($_SERVER['REQUEST_URI'], 'communes')) {
 	$data = tous_les_communes();
 	echo json_encode($data, JSON_PRETTY_PRINT);
 }
-if (strpos($_SERVER['REQUEST_URI'], 'type_habitation')) {
-	$data = type_habitation_par_commune();
+if (strpos($_SERVER['REQUEST_URI'], 'somme_des_menages_recenses')) {
+	$data = somme_menage_recenses();
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'taille_moyenne_menages')) {
+	$data = taille_moyenne_menages();
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'Somme_population_menages_ordinaires_recenses')) {
+	$data = somme_population_menages_ordinaires_recenses();
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+
+if (strpos($_SERVER['REQUEST_URI'], 'menages_avec_zeros_deces')) {
+	$data = menages_avec_zeros_deces();
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'menages_avec_zeros_deces')) {
+	$data = menages_avec_zeros_deces();
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'personne_avec_residence_non_declaree')) {
+	$data = personne_avec_residence_non_declaree();
 	echo json_encode($data, JSON_PRETTY_PRINT);
 }
