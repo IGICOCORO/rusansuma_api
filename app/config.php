@@ -44,6 +44,19 @@ function type_toiture(){
 		$r['communeName'] = COMMUNES[$r['commune']];
 		$data[] = $r;
 	}
+	return $data;
+}
 
+function materiau_murs_exterieurs(){
+	$sql = 'SELECT count(*) as totalMenage ,H04 as type_mur,  ID02 as commune from feuil GROUP BY H04,  ID02';
+
+	$result = executeQuery($sql);
+	$data = [];
+	foreach($result as $r)
+	{
+		$r['mur_exterieur'] = TYPE_DE_MATERIAUX[$r['type_mur']];
+		$r['communeName'] = COMMUNES[$r['commune']];
+		$data[] = $r;
+	}
 	return $data;
 }
