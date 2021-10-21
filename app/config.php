@@ -9,7 +9,7 @@ function executeQuery($sql = "") {
 	if ($result) {
 		return $result->fetchAll();
 	} else {
-		return ["error" => "PAS DE RESULT"];
+		return ["error" => "PAS DE RESULTAT"];
 	}
 }
 // NOMBRE TOTAL DE MENAGE PAR COMMUNE

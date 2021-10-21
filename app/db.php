@@ -1,16 +1,16 @@
 <?php
 
-function connectTo($databasename = "hhmng") {
+function connectTo($databasename = "isteebu_gitega") {
 
 	$servername = "localhost";
-	$username = "root";
-	$password = "";
+	$username = "jean";
+	$password = "lion";
 	$dbname = $databasename;
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$databasename;**charset=utf8**", $username, $password);
 		// set the PDO error mode to exception
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		echo "Connected successfully";
+		//echo "Connected successfully";
 	} catch (PDOException $e) {
 		echo "Connection failed: " . $e->getMessage();
 	}
@@ -23,6 +23,6 @@ function getConnection() {
 }
 
 function getConnection_on_orginal() {
-	return connectTo('hhmng');
+	return connectTo();
 }
 ?>
