@@ -1,7 +1,7 @@
 <?php
 require "app/db.php";
 require "app/communes.php";
-// NOMBRE DE MENAGE PAR COMMUNE
+
 
 function executeQuery($sql = "") {
 	$db = getConnection();
@@ -14,8 +14,9 @@ function executeQuery($sql = "") {
 }
 // NOMBRE TOTAL DE MENAGE PAR COMMUNE
 
-function total_number_of_menage_by_communes(){
-		$sql = "SELECT SUM(ID08) as menages,ID02 as communes from feuil GROUP BY communes";
+function nombre_total_menages_par_communes(){
+
+		$sql = "SELECT SUM(ID08) as menages,ID02 as communes from hlsample GROUP BY communes";
 		$result = executeQuery($sql);
 
 		$data = [];
@@ -26,8 +27,9 @@ function total_number_of_menage_by_communes(){
 			$data[] = $r;
 		}
 		return $data;
-
 }
+
+
 // TOUS LES COMMUNES
 function tous_les_communes() {
 	$sql = "SELECT ID02 as commune from feuil GROUP BY commune ORDER BY commune ASC ";
@@ -41,11 +43,9 @@ function tous_les_communes() {
 	return $data;
 }
 
-
-
 // SOMME MENAGES RECENSEES
 function somme_menage_recenses() {
-	$sql = "SELECT COUNT(ID08) AS somme_menages_recensés FROM hlsample";
+	$sql = "SELECT SUM(ID08) AS somme_menages_recensés FROM hlsample";
 
 	$data = executeQuery($sql);
 
@@ -55,7 +55,7 @@ function somme_menage_recenses() {
 
 // Somme de la population des menages ordinaires recenses
 function somme_population_menages_ordinaires_recenses() {
-	$sql = "SELECT count(`P03`) as Total_residents  from hlsample WHERE P03 IN (1,2)";
+	$sql = "SELECT SUM(`P02`) as population_des_menages_collectes FROM hlsample";
 
 	$data = executeQuery($sql);
 
@@ -80,14 +80,49 @@ function menages_avec_zeros_deces() {
 }
 //NOMBRE DE PERSONNE AVEC SITUATION DE RESIDENCE NON DECLAREE
 function personne_avec_residence_non_declaree() {
-	$sql = "SELECT COUNT(P03) as nombre_personne_avec_resi_non_declare FROM `hlsample` WHERE P03 IS NULL OR P03";
+	$sql = "SELECT COUNT(P03) as nombre_personne_avec_resi_non_declare FROM `hlsample` WHERE P03 NOT IN(1,2,3)";
 
 	$data = executeQuery($sql);	
 	return $data;
 }
 
+//NOMBRE TOTAL DES HOMMES
+function nombre_total_des_hommes() {
+	$sql = "SELECT SUM(`P02`) as Homme from hlsample WHERE P02 IN (1)";
 
+	$data = executeQuery($sql);	
+	return $data;
+}
+//NOMBRE TOTAL DES FEMMES
+function nombre_total_des_femmes() {
+	$sql = "SELECT SUM(`P02`) as femme from hlsample WHERE P02 IN (2)";
 
+	$data = executeQuery($sql);	
+	return $data;
+}
+// NOMBRE TOTAL DE LA POPULATION PAR COMMUNE
+function population_total_commune(){
+	$sql = "SELECT SUM(P02) as Population_total,ID02 as communes from hlsample GROUP BY communes";
+	$result = executeQuery($sql);
+
+		$data = [];
+		foreach($result as $r)
+		{
+			$r["commune_name"] = COMMUNES[$r['communes']];
+
+			$data[] = $r;
+		}
+		return $data;
+
+}
+
+// NOMBRE DE MASCULIN RESIDENT_PRESENT
+function masculin_residents_present(){
+	$sql = "SELECT count(P02) as masculin , P03 as `typeResidence` from hlsample WHERE P02 = 1 AND P03 = 1;";
+	$data = executeQuery($sql);
+	return $data;
+
+}
 
 
 
