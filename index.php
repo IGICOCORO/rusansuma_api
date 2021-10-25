@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_URI'] == DOCUMENT_ROOT) {
 			'menage_commune' => "MENAGE PAR COMMUNES",
 			'type_habitation' => "TYPE D'HABITATION",
 			'materiau_murs_exterieurs' => "Materiaux murs exterieurs",
+			'materiaux_pavement' => "Materiaux de pavement",
 			"type_toiture" => 'TYPE DE TOITURE '
 		], JSON_PRETTY_PRINT);
 }
@@ -30,5 +31,9 @@ if (strpos($_SERVER['REQUEST_URI'], 'type_toiture')) {
 }
 if (strpos($_SERVER['REQUEST_URI'], 'materiau_murs_exterieurs')) {
 	$data = materiau_murs_exterieurs();
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'materiaux_pavement')) {
+	$data = materiaux_pavement();
 	echo json_encode($data, JSON_PRETTY_PRINT);
 }

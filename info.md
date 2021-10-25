@@ -90,9 +90,6 @@ All variables are already done above
 Nombre de personne avec situation de résidence non déclarée /Population: 
   % P04c = ND
 -----------------------------------------------------------------------------------------
-
-
-
 ===============Demo Queries form localhost Using data census 2008========================
 
 1) Type d'habitation Par commune
@@ -103,7 +100,7 @@ CASE
 	WHEN H01 =2 THEN "Rural"
 END AS "Localité"
 
-FROM feuil1 GROUP BY ID02; 
+FROM feuil GROUP BY ID02; 
 
 2) Nombre de pièces à usage d'habitation par Commune
 ----------------------------------------------------
@@ -142,7 +139,7 @@ SELECT ID02 Cummune,ID08 AS "Nombre Menage par commune", H04,
         WHEN 8 THEN "Plastique/sheeting/Cartons " 
         WHEN 9 THEN "Autres" 
      END Materiaux_de_toiture 
-   FROM feuil1 GROUP BY ID02 ORDER BY ID02
+   FROM feuil GROUP BY ID02 ORDER BY ID02
 
 SELECT 
     customerName, 

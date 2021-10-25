@@ -1,5 +1,5 @@
 ##Informations de la variable
------------------------------------------------------------------------------		
+-------------------------------------------		
 Variable	Position	Etiquette
 ------------------------------------------
 ID01		1		Province
@@ -9,18 +9,18 @@ ID05		4		Zone de dénombrement
 ID07		5		Habitation
 ID08		6		Ménage
 ID09		7		N° Questionnaire
-H01		8		Type d'habitation
-H02		9		Nombre de pièces à usage d'habitation
-H03		10		Materiaux de toiture
-H04		11		Materiaux murs exterieurs
-H05		12		Matériaux pavement
-H06		13		Mode d'approvisionnement en eau
-H07		14		Mode d'éclairage
-H08		15		Source d'énergie pour la cuisson
-H09		16		Type de lieu d'aisance
-H10		17		Mode d'évacuation des déchets ménagers
-H11		18		Mode d'évacuation des eaux usées
-H12		19		Titre d'occupation de la maison
+H01			8		Type d'habitation
+H02			9		Nombre de pièces à usage d'habitation
+H03			10		Materiaux de toiture
+H04			11		Materiaux murs exterieurs
+H05			12		Matériaux pavement
+H06			13		Mode d'approvisionnement en eau
+H07			14		Mode d'éclairage
+H08			15		Source d'énergie pour la cuisson
+H09			16		Type de lieu d'aisance
+H10			17		Mode d'évacuation des déchets ménagers
+H11			18		Mode d'évacuation des eaux usées
+H12			19		Titre d'occupation de la maison
 H13A		20		Radio
 H13B		21		Tétévision
 H13C		22		Radio et Télévision
@@ -43,7 +43,7 @@ H16C		38		Porcs
 H16D		39		Volailles
 H16E		40		Lapins
 H16F		41		Possession de betail
-H17		42		Possession terre
+H17			42		Possession terre
 HDEATH		43		Nombre de décès les 12 derniers mois
 HEMIG		44		Nombre de départs à l'étranger depuis octobre 93
 HIMIG		45		Nombre de retours depuis août 2000

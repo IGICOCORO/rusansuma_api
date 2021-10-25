@@ -60,3 +60,17 @@ function materiau_murs_exterieurs(){
 	}
 	return $data;
 }
+
+function materiaux_pavement(){
+	$sql = "SELECT count(*) as totalType ,H05 as materiauxPavament,  ID02 as commune from feuil GROUP BY H05,  ID02";
+	$result = executeQuery($sql);
+	$data = [];
+	foreach($result as $r)
+	{
+		$r['mur_exterieur'] = MATERIAUX_PAVAMENT[$r['materiauxPavament']];
+		$r['communeName'] = COMMUNES[$r['commune']];
+		$data[] = $r;
+	}
+	return $data;
+
+}

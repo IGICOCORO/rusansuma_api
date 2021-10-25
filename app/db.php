@@ -1,7 +1,7 @@
 <?php
 
-function getConnection($databasename = "isteebu_gitega") {
-
+function getConnection($databasename = "isteebu_gitega_2") {
+	
 	$servername = "localhost";
 	$username = "jean";
 	$password = "lion";
