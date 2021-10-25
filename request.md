@@ -40,13 +40,13 @@ select sum(HDEATH) AS nbre_deces from  hlsample WHERE ID05=1;
 - nbre de chommage  par ..... (nkuko kwohejuru)
 
 ID01	1	Province
-select count(P23) from  hlsample WHERE p23=3 AND ID01=1;
+select count(*) from  hlsample WHERE p23=3 AND ID01=1;
 ID02	2	Commune
-select count(P23) from  hlsample WHERE p23=3 AND ID02=1;
+select count(*) from  hlsample WHERE p23=3 AND ID02=1;
 ID03	3	Colline
-select count(P23) from  hlsample WHERE p23=3 AND ID03=1;
+select count(*) from  hlsample WHERE p23=3 AND ID03=1;
 ID05	4	Zone de dénombrement
-select count(P23) from  hlsample WHERE p23=3 AND ID05=1;
+select count(*) from  hlsample WHERE p23=3 AND ID05=1;
 
 
 - nbre de natalite par ...  (nkuko kwohejuru)
@@ -68,13 +68,69 @@ ID05	4	Zone de dénombrement
 
 select sum(P28M) as total_garcon,sum(P28F) as total_fille ,sum(P28F + P28M) as total from hlsample WHERE ID05=1;
 
+- nbre d'handicap par type d'handicap par ZD .........  (nkuko kwohejuru);
+
+ID01	1	Province
+
+SELECT  P15CM as type_handicap ,count(*) as total,CASE 
+WHEN P15CM = 0 THEN "Sans handicap"
+WHEN P15CM = 1 THEN "Aveugle"
+WHEN P15CM = 2 THEN "Sourd"
+WHEN P15CM = 3 THEN "Muet"
+WHEN P15CM = 4 THEN "Sourd/muet"
+WHEN P15CM = 5 THEN "Infirme des membres inférieurs"
+WHEN P15CM = 6 THEN "Infirme des membres supérieurs"
+WHEN P15CM = 7 THEN "Déficience mentale"
+WHEN P15CM = 8 THEN "Autre handicap"
+END AS signification FROM hlsample WHERE ID01=1  group by P15CM;
 
 
-- nbre d'handicap par type d'handicap par ZD .........  (nkuko kwohejuru)
+ID02	2	Commune
+
+SELECT  P15CM as type_handicap ,count(*) as total,CASE 
+WHEN P15CM = 0 THEN "Sans handicap"
+WHEN P15CM = 1 THEN "Aveugle"
+WHEN P15CM = 2 THEN "Sourd"
+WHEN P15CM = 3 THEN "Muet"
+WHEN P15CM = 4 THEN "Sourd/muet"
+WHEN P15CM = 5 THEN "Infirme des membres inférieurs"
+WHEN P15CM = 6 THEN "Infirme des membres supérieurs"
+WHEN P15CM = 7 THEN "Déficience mentale"
+WHEN P15CM = 8 THEN "Autre handicap"
+END AS signification FROM hlsample WHERE ID02=1  group by P15CM;
 
 
+ID03	3	Colline 
+
+SELECT  P15CM as type_handicap ,count(*) as total,CASE 
+WHEN P15CM = 0 THEN "Sans handicap"
+WHEN P15CM = 1 THEN "Aveugle"
+WHEN P15CM = 2 THEN "Sourd"
+WHEN P15CM = 3 THEN "Muet"
+WHEN P15CM = 4 THEN "Sourd/muet"
+WHEN P15CM = 5 THEN "Infirme des membres inférieurs"
+WHEN P15CM = 6 THEN "Infirme des membres supérieurs"
+WHEN P15CM = 7 THEN "Déficience mentale"
+WHEN P15CM = 8 THEN "Autre handicap"
+END AS signification FROM hlsample WHERE ID03=1  group by P15CM;
 
 
+ID05	4	Zone de dénombrement 
+
+SELECT  P15CM as type_handicap ,count(*) as total,CASE 
+WHEN P15CM = 0 THEN "Sans handicap"
+WHEN P15CM = 1 THEN "Aveugle"
+WHEN P15CM = 2 THEN "Sourd"
+WHEN P15CM = 3 THEN "Muet"
+WHEN P15CM = 4 THEN "Sourd/muet"
+WHEN P15CM = 5 THEN "Infirme des membres inférieurs"
+WHEN P15CM = 6 THEN "Infirme des membres supérieurs"
+WHEN P15CM = 7 THEN "Déficience mentale"
+WHEN P15CM = 8 THEN "Autre handicap"
+END AS signification FROM hlsample WHERE ID05=1  group by P15CM;
+
+
+from hlsample group by P15CM
 Variable	Position	Etiquette
 
 ID01	1	Province

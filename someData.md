@@ -22,3 +22,18 @@ P30F	41	Naissances vivantes des 12 derniers mois : Féminin
 P31M	42	Survivants des 12 derniers mois : Masculin
 P31F	43	Survivants des 12 derniers mois : Féminin
 
+============================================== 
+
+
+
+
+WHEN 0 THEN "Sans handicap"
+WHEN 1 THEN "Aveugle"
+WHEN 2 THEN "Sourd"
+WHEN 3 THEN "Muet"
+WHEN 4 THEN "Sourd/muet"
+WHEN 5 THEN "Infirme des membres inférieurs"
+WHEN 6 THEN "Infirme des membres supérieurs"
+WHEN 7 THEN "Déficience mentale"
+WHEN 8 THEN "Autre handicap"
+
