@@ -18,13 +18,14 @@ function executeQuery($sql = "") {
 function total_number_of_menage_by_communes(){
 	$sql = "SELECT SUM(ID08) as menages,ID02 as communes from hlsample GROUP BY communes";
 	$result = executeQuery($sql);
+	$total_menage = executeQuery("SELECT SUM(ID08) as total_menage from hlsample");
 	$data = [];
-	foreach($result as $r)
+	foreach($result as $key => $r)
 	{
 		$r['communeName'] = COMMUNES[$r['communes']];
-		$data[] = $r;
+		$data[$r['communes']] = $r;
 	}
-	return $data;
+	return [$total_menage , $data];
 
 }
 
@@ -78,11 +79,15 @@ function materiaux_pavement(){
  // - nombre de deces par ZD,Province,commune,colline ....
 
 function search_deces($zone, $value){
-	$sql = 'select sum(HDEATH) AS nbre_deces from  hlsample WHERE '.$zone.'='.$value;
+	$sql = 'select sum(HDEATH) AS nbre_deces from  hlsample';
+	if($value > 0){
+		$sql .= ' WHERE '.$zone.'='.$value;
+	}
+	
 	return executeQuery($sql);
 }
 // PROVINCE 
-function deces_province($value = 1){
+function deces_province($value = 0){
 	return search_deces('ID01',$value);
 }
 //  ID02	2	Commune
@@ -149,6 +154,10 @@ function naissance_zonne_denombrement($value){
 # - nbre d'handicap par type d'handicap 
 
 function search_handicap($zone, $value){
+	$condition = "";
+	if($value > 0){
+			$condition .= ' WHERE '.$zone.'='.$value;
+	}
 	$sql = 'SELECT  P15CM as type_handicap ,count(*) as total,CASE 
 			WHEN P15CM = 0 THEN "Sans handicap"
 			WHEN P15CM = 1 THEN "Aveugle"
@@ -157,10 +166,14 @@ function search_handicap($zone, $value){
 			WHEN P15CM = 4 THEN "Sourd/muet"
 			WHEN P15CM = 5 THEN "Infirme des membres inférieurs"
 			WHEN P15CM = 6 THEN "Infirme des membres supérieurs"
-			WHEN P15CM = 7 THEN "Déficience mentale"
+		 	WHEN P15CM = 7 THEN "Déficience mentale"
 			WHEN P15CM = 8 THEN "Autre handicap"
-			END AS signification FROM hlsample WHERE '.$zone.'='.$value.' group by P15CM';
-	return executeQuery($sql);
+			END AS signification FROM hlsample '.$condition.' group by P15CM' ;
+	$sql2 = 'SELECT count(*) as total_handicap FROM hlsample WHERE P15CM <> 0';
+	if($value > 0)
+		$sql2 .= ' AND '.$zone.'='.$value;
+		
+	return [ executeQuery($sql2), executeQuery($sql)];
 }
 
 ## ID01	1	Province
@@ -179,4 +192,3 @@ function handicap_colline($value){
 function handicap_zonne_denombrement($value){
 	return search_handicap('ID05', $value);
 }
-
