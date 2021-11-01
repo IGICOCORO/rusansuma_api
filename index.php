@@ -35,6 +35,7 @@ if ($_SERVER['REQUEST_URI'] == DOCUMENT_ROOT) {
 			'/handicap_commune/id' => 'HANDICAPE PAR COMMUNE',
 			'/handicap_colline/id' => 'HANDICAPE PAR COLLINE',
 			'/handicap_zonne_denombrement/id' => 'HANDICAPE PAR ZD',
+			'/piramide' => 'PYRAMIDE',
 			
 		], JSON_PRETTY_PRINT);
 }
@@ -55,6 +56,10 @@ if (strpos($_SERVER['REQUEST_URI'], 'handicap_colline')) {
 }
 if (strpos($_SERVER['REQUEST_URI'], 'handicap_zonne_denombrement')) {
 	$data = handicap_zonne_denombrement($value);
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'piramide')) {
+	$data = pyramideAge();
 	echo json_encode($data, JSON_PRETTY_PRINT);
 }
 

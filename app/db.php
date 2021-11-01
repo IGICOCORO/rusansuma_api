@@ -19,3 +19,13 @@ function getConnection($databasename = "isteebu_gitega_2") {
 
 }
 
+function dump($val = null){
+
+	echo "<pre>";
+	var_dump($val);
+	echo "</pre>";
+
+	die();
+
+}
+

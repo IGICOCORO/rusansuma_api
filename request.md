@@ -133,6 +133,11 @@ END AS signification FROM hlsample WHERE ID05=1  group by P15CM;
 from hlsample group by P15CM
 Variable	Position	Etiquette
 
+select count(*) from hlsample WHERE HDEATH=0 group by P15CM;
+
+
+SELECT count(*) FROM hlsample WHERE HP06 >=10 AND P02 = 2 AND HDEATH <> 0;
+
 ID01	1	Province
 ID02	2	Commune
 ID03	3	Colline
@@ -240,7 +245,6 @@ P24CM	103	Emploi exercé par le CM
 P25CM	104	Statut du CM dans l'emploi
 P26CM	105	Branche d'activité du CM
 P27CM	106	Etat matrimonial du CM
-
 
 
 

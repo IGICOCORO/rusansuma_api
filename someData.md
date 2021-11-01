@@ -1,3 +1,13 @@
+
+Le nombre de menages avec 0 deces de femmes de 10 et plus 
+
+P05Y	13	Année de naissance
+HP06		AGE < 10 HP06
+P02		9	Sexe  => 2 FEMME
+HDEATH 		DECES !=  0
+
+
+
 P23	31	Situation d'activité
 ============================
 1	Occupé

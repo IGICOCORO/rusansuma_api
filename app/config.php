@@ -33,6 +33,8 @@ function total_number_of_menage_by_communes(){
 // TYPE D'HABITATION PAR COMMUNE
 function type_habitation_par_commune() {
 	$sql = "SELECT SUM(ID08) as menages,ID02 as communes from hlsample GROUP BY communes";
+	
+	return executeQuery($sql);
 }
 
 function type_toiture(){
@@ -192,3 +194,50 @@ function handicap_colline($value){
 function handicap_zonne_denombrement($value){
 	return search_handicap('ID05', $value);
 }
+
+
+function pyramideAge(){
+	//$sql = "select HP06  as age,P02 as sexe from hlsample order by HP06";
+	$sql = "select HP06 as age ,P02 as sexe,count(*) as total from hlsample group by age, sexe";
+	$info = executeQuery($sql);
+	$tableau = [];
+	$born_inferieur = 0;
+	$born_superieur = 4;
+
+	foreach($info as $key => $v){
+		if($v["age"] < $born_superieur){
+			$tableau[$born_inferieur ."-".$born_superieur][] = $v;
+		}else if($v["age"] > $born_superieur){
+			$born_inferieur +=5;
+			$born_superieur += 5;
+			$tableau[$born_inferieur ."-".$born_superieur][] = $v;
+		}else{
+			$tableau["UNKNOWN"][] = $v;
+		}
+	}
+
+	$tab = [];
+	foreach ($tableau as $key => $tranch) {
+		$total_homme = 0;
+		$total_femme = 0;
+		foreach ($tranch as $value) {
+
+			if($value["sexe"] == 1){
+				$total_homme += $value['total'];
+			}
+			if($value["sexe"] == 2){
+				$total_femme += $value['total'];
+			}
+		}
+		$tab[] = [
+			'AGE' => $key,
+			'HOMME' => $total_homme,
+			'FEMME' => $total_femme,
+			'ENSEMBLE' => ($total_homme + $total_femme)
+		];
+	}
+
+	return $tab;
+}
+
+
