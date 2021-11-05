@@ -240,4 +240,16 @@ function pyramideAge(){
 	return $tab;
 }
 
+function population_age($debut =0 , $fin=140, $sexe = -1){
+	$sql = "select count(*) as `$debut - $fin - SEXE $sexe` from hlsample WHERE HP06 BETWEEN $debut AND $fin";
+	if($sexe  > -1){
+		$sql.= " AND P02=$sexe";
+	}
+	return executeQuery($sql );
+}
 
+function naissance_vivante($debut=0, $fin=140){
+	$sql = "select sum(P28F) as `TOTAL FEMME VIVANTE AGE $debut - $fin` from hlsample WHERE HP06 BETWEEN $debut AND $fin ";
+
+	return executeQuery($sql );
+}

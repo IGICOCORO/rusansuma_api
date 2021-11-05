@@ -19,33 +19,51 @@ if ($_SERVER['REQUEST_URI'] == DOCUMENT_ROOT) {
 			'/deces_commune' => 'NOMBRE DE DECES PAR COMMUNE',
 			'/deces_colline' => 'NOMBRE DE DECES PAR COLLINE',
 			'/deces_zone_denombrement' => 'NOMBRE DE DECES PAR ZONNE DE DENOMBREMENT',
-
 			'/chomeur_province/id' => 'CHOMMEUR PAR PROVINCE',
 			'/chomeur_commune/id' => 'CHOMMEUR PAR COMMUNE',
 			'/chomeur_colline/id' => 'CHOMMEUR PAR COLLINE',
 			'/chomeur_zonne_denombrement/id' => 'CHOMMEUR PAR ZONE DE DENOMBREMENT',
-
 			'/naissance_province/id' => 'NAISSANCE PAR PROVINCE',
 			'/naissance_commune/id' => 'NAISSANCE PAR COMMUNE',
 			'/naissance_colline/id' => 'NAISSANCE PAR COLLINE',
 			'/naissance_zonne_denombrement/id' => 'NAISSANCE PAR ZONE DE DENOMBREMENT',
-
-
 			'/handicap_province/id' => 'HANDICAPE PAR PROVINCE',
 			'/handicap_commune/id' => 'HANDICAPE PAR COMMUNE',
 			'/handicap_colline/id' => 'HANDICAPE PAR COLLINE',
 			'/handicap_zonne_denombrement/id' => 'HANDICAPE PAR ZD',
 			'/piramide' => 'PYRAMIDE',
-			
+			//POPULATION PAR LA TRANCHE D'AGE 
+			'population_age' => 'POPULATION AGEE DE _DEBUT ET _FIN',
+			// NOMBRE DE FEMME DE 10 ET PLUS P02			
+			'femmes_dix_plus' => 'FEMME DE 10 et PLUS AGEE DE _DEBUT ET _FIN',
+			// NOMBRE DE FEMME DE 10 ET PLUS P02
 		], JSON_PRETTY_PRINT);
 }
 
 // HANDICAP PAR PROVINCE
 
+if (strpos($_SERVER['REQUEST_URI'], 'population_age')) {
+	$data_3 = population_age(0,3);
+	$data_6 = population_age(0,6);
+	$data_12 = population_age(0,12);
+	$data_5 = population_age(5);
+	$femmes_10_plus = population_age(10,140, 2);
+	$nombre_chomeur = chomeur_province(1);
+	//P28F	37	Naissances vivantes : Féminin
+	$femmes_vivate_10_plus = naissance_vivante(10);
+	$femmes_vivate_15_49 = naissance_vivante(15, 49);
+
+	$data = array_merge($data_3,$data_6 ,	$data_12 ,$data_5 ,$femmes_10_plus,
+	 $nombre_chomeur, $femmes_vivate_10_plus,$femmes_vivate_15_49);
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+
 if (strpos($_SERVER['REQUEST_URI'], 'handicap_province')) {
 	$data = handicap_province($value);
 	echo json_encode($data, JSON_PRETTY_PRINT);
 }
+
+
 if (strpos($_SERVER['REQUEST_URI'], 'handicap_commune')) {
 	$data = handicap_commune($value);
 	echo json_encode($data, JSON_PRETTY_PRINT);
