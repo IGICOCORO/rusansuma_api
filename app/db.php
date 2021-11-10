@@ -1,10 +1,10 @@
 <?php
 
-function getConnection($databasename = "isteebu_gitega_2") {
+function getConnection($databasename = "hhmng") {
 	
 	$servername = "localhost";
-	$username = "jean";
-	$password = "lion";
+	$username = "root";
+	$password = "";
 	$dbname = $databasename;
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$databasename;**charset=utf8**", $username, $password);

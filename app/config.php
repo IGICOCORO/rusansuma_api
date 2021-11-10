@@ -13,6 +13,85 @@ function executeQuery($sql = "") {
 		return ["error" => "PAS DE RESULTAT"];
 	}
 }
+
+
+// SOMME MENAGES RECENSEES
+function somme_menage_recenses() {
+	$sql = "SELECT SUM(ID08) AS somme_menages_recenses FROM hlsample";
+
+	$data = executeQuery($sql);
+
+	
+	return $data;
+}
+
+// Somme de la population des menages ordinaires recenses
+function somme_population_menages_ordinaires_recenses() {
+	$sql = "SELECT SUM(`P02`) as population_des_menages_collectes FROM hlsample";
+
+	$data = executeQuery($sql);
+	
+	return $data;
+}
+
+//NOMBRE TOTAL DES HOMMES
+function nombre_total_des_hommes() {
+	$sql = "SELECT SUM(`P02`) as Homme from hlsample WHERE P02 IN (1)";
+
+	$data = executeQuery($sql);	
+	return $data;
+}
+//NOMBRE TOTAL DES FEMMES
+function nombre_total_des_femmes() {
+	$sql = "SELECT SUM(`P02`) as femme from hlsample WHERE P02 IN (2)";
+
+	$data = executeQuery($sql);	
+	return $data;
+}
+// NOMBRE DE MASCULIN RESIDENT_PRESENT
+function masculin_residents_present(){
+	$sql = "SELECT count(P02) as masculin , P03 as `typeResidence` from hlsample WHERE P02 = 1 AND P03 = 1;";
+	$data = executeQuery($sql);
+	return $data;
+
+}
+// NOMBRE DE MASCULIN RESIDENT_ABSENT
+function masculin_residents_absent(){
+	$sql = "SELECT count(P02) as masculin , P03 as `typeResidence` from hlsample WHERE P02 = 1 AND P03 = 2;";
+	$data = executeQuery($sql);
+	return $data;
+
+}
+// NOMBRE DE FEMININ RESIDENT_PRESENT
+function feminin_residents_present(){
+	$sql = "SELECT count(P02) as feminin , P03 as `typeResidence` from hlsample WHERE P02 = 2 AND P03 = 1;";
+	$data = executeQuery($sql);
+	return $data;
+
+}
+// NOMBRE DE FEMININ RESIDENT_ABSENT
+function feminin_residents_absent(){
+	$sql = "SELECT count(P02) as feminin , P03 as `typeResidence` from hlsample WHERE P02 = 2 AND P03 = 2;";
+	$data = executeQuery($sql);
+	return $data;
+
+}
+// NOMBRE DE FEMININ VISITEUR
+function feminin_visiteur(){
+	$sql = "SELECT count(P02) as feminin , P03 as `typeResidence` from hlsample WHERE P02 = 2 AND P03 = 3;";
+	$data = executeQuery($sql);
+	return $data;
+
+}
+// NOMBRE DE FEMININ VISITEUR
+function masculin_visiteur(){
+	$sql = "SELECT count(P02) as masculin , P03 as `typeResidence` from hlsample WHERE P02 = 1 AND P03 = 3;";
+	$data = executeQuery($sql);
+	return $data;
+
+}
+
+
 // NOMBRE TOTAL DE MENAGE PAR COMMUNE
 
 function total_number_of_menage_by_communes(){

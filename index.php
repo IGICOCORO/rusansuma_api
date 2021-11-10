@@ -3,13 +3,28 @@ header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: *");
 
 require "app/config.php";
-$value = intval(end(explode('/',$_SERVER['REQUEST_URI'])));
+$a = explode('/',$_SERVER['REQUEST_URI']);
+$b = end($a);
+
+$value = intval($b);
 
 define('DOCUMENT_ROOT', '/');
 
 if ($_SERVER['REQUEST_URI'] == DOCUMENT_ROOT) {
 	echo json_encode(
-		[
+		[	
+			'/nombre_total_des_hommes' => "NOMBRE TOTAL DES HOMMES",
+			'/nombre_total_des_femmes' => "NOMBRE TOTAL DES FEMMES",
+			'/residents_presents_masculins' => "NOMBRE DE MASCULIN RESIDENT_PRESENT",
+			'/residents_presents_feminin' => "NOMBRE DE FEMININ RESIDENT_PRESENT",
+			'/femmes_residents_absents' => "NOMBRE DE FEMININ RESIDENT_ABSENT",
+			'/masculins_residents_absents' => "NOMBRE DE MASCULIN RESIDENT_ABSENT",
+			'/visiteur_masculin' => "NOMBRE DE MASCULIN VISITEUR",
+			'/visiteur_feminin' => "NOMBRE DE FEMININ VISITEUR",
+			'/Somme_population_menages_ordinaires_recenses' => "SOMMES DE LA POPULATION DES MENAGES ORDINAIRES RECENSES",
+			'/somme_des_menages_recenses' => "SOMMES DES MENAGES RECENSES",
+
+			//separator
 			'/menage_commune' => "MENAGE PAR COMMUNES",
 			'/type_habitation' => "TYPE D'HABITATION",
 			'/materiau_murs_exterieurs' => "Materiaux murs exterieurs",
@@ -39,6 +54,52 @@ if ($_SERVER['REQUEST_URI'] == DOCUMENT_ROOT) {
 			// NOMBRE DE FEMME DE 10 ET PLUS P02
 		], JSON_PRETTY_PRINT);
 }
+
+if (strpos($_SERVER['REQUEST_URI'], 'nombre_total_des_hommes')) {
+	$data = nombre_total_des_hommes($value);
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'nombre_total_des_femmes')) {
+	$data = nombre_total_des_femmes($value);
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'residents_presents_masculin')) {
+	$data = masculin_residents_present($value);
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'residents_presents_feminin')) {
+	$data = feminin_residents_present($value);
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'femmes_residents_absents')) {
+	$data = feminin_residents_absent($value);
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'masculins_residents_absents')) {
+	$data = masculin_residents_absent($value);
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'visiteur_masculin')) {
+	$data = masculin_visiteur($value);
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'visiteur_feminin')) {
+	$data = feminin_visiteur($value);
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+if (strpos($_SERVER['REQUEST_URI'], 'Somme_population_menages_ordinaires_recenses')) {
+	$data = somme_population_menages_ordinaires_recenses($value);
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+
+if (strpos($_SERVER['REQUEST_URI'], 'somme_des_menages_recenses')) {
+	$data = somme_menage_recenses($value);
+	echo json_encode($data, JSON_PRETTY_PRINT);
+}
+
+
+
+// separator
 
 // HANDICAP PAR PROVINCE
 
